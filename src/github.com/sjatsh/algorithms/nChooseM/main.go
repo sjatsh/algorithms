@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"sort"
 )
 
 func main() {
@@ -9,21 +10,29 @@ func main() {
 	var numS = []int{1, 2, 3, 4, 5}
 	m := 3
 
-	num := combinationNum(len(numS), m)
-	indexS := permutationOfIndex(len(numS), m)
+	combinationNum := combinationNum(len(numS), m)
+	indexS := combinationNumOfIndex(len(numS), m)
 	result := findByIndexS(numS, indexS)
 	fmt.Println(result)
 
-	if len(result) == num {
-		fmt.Println("result success")
+	if len(result) == combinationNum {
+		fmt.Println("combination result success")
 	} else {
-		fmt.Printf("result fail, right result must be %d\n", num)
+		fmt.Printf("combination result fail, right result must be %d\n", combinationNum)
 	}
 
+	permutationNum := permutationNum(len(numS), m)
+	permutationResult := permutation(result)
+	fmt.Println(permutationResult)
+	if len(permutationResult) == permutationNum {
+		fmt.Println("permutation result success")
+	} else {
+		fmt.Printf("permutation result fail, right result must be %d\n", permutationNum)
+	}
 }
 
 // permutationOfIndex n选m组合索引
-func permutationOfIndex(n, m int) [][]int {
+func combinationNumOfIndex(n, m int) [][]int {
 
 	if m < 1 || m > n {
 		fmt.Println("Illegal argument. Param m must between 1 and len(nums).")
@@ -120,6 +129,35 @@ func findByIndexS(numS []int, indexS [][]int) [][]int {
 		result[i] = line
 	}
 
+	return result
+}
+
+// permutation 全排列（字典法）
+func permutation(numS [][]int) [][]int {
+
+	result := make([][]int, 0)
+	for i := range numS {
+
+		sort.Slice(numS[i], func(j, k int) bool {
+			return numS[i][j] < numS[i][k]
+		})
+		result = addTo(result, numS[i])
+		for {
+			find := false
+
+			for j := len(numS[i]) - 1; j > 0; j-- {
+				if numS[i][j] > numS[i][j-1] {
+					find = true
+					numS[i][j], numS[i][j-1] = numS[i][j-1], numS[i][j]
+					result = addTo(result, numS[i])
+				}
+			}
+			if !find {
+				break
+			}
+		}
+
+	}
 	return result
 }
 
