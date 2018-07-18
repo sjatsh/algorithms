@@ -7,8 +7,8 @@ import (
 
 func main() {
 
-	var numS = []int{1, 2, 3, 4, 5}
 	m := 3
+	var numS = []int{1, 2, 3, 4, 5}
 
 	combinationNum := combinationNum(len(numS), m)
 	indexS := combinationNumOfIndex(len(numS), m)
