@@ -142,22 +142,44 @@ func permutation(numS [][]int) [][]int {
 			return numS[i][j] < numS[i][k]
 		})
 		result = addTo(result, numS[i])
-		for {
-			find := false
 
-			for j := len(numS[i]) - 1; j > 0; j-- {
-				if numS[i][j] > numS[i][j-1] {
+		for {
+
+			find := false
+			pos1, pos2 := 0, 0
+			for j := len(numS[i]) - 2; j >= 0; j-- {
+
+				if numS[i][j] < numS[i][j+1] {
 					find = true
-					numS[i][j], numS[i][j-1] = numS[i][j-1], numS[i][j]
-					result = addTo(result, numS[i])
+					pos1 = j
+					break
 				}
 			}
+
 			if !find {
 				break
 			}
+
+			for j := len(numS[i]) - 1; j > pos1; j-- {
+
+				if numS[i][j] >= numS[i][pos1] {
+					pos2 = j
+					break
+				}
+			}
+
+			numS[i][pos1], numS[i][pos2] = numS[i][pos2], numS[i][pos1]
+
+			for j, k := pos1+1, len(numS[i])-1; j < k; j, k = j+1, k-1 {
+
+				numS[i][j], numS[i][k] = numS[i][k], numS[i][j]
+			}
+
+			result = addTo(result, numS[i])
 		}
 
 	}
+
 	return result
 }
 
