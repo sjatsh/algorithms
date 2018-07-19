@@ -36,51 +36,50 @@ func TestRandNum(t *testing.T) {
 	fmt.Println(nums)
 }
 
+// TestCombination
 func TestCombination(t *testing.T) {
 
 	TestRandNum(t)
 
 	// n 选 m所有组合数
-	combinationNum := combinationNum(len(nums), m)
+	combinationNum := combinationNum(n, m).Int64()
 
 	start := time.Now()
 	// 所有组合数的索引数组
-	indexS := combinationNumOfIndex(len(nums), m)
+	indexS := combinationNumOfIndex(n, m)
 	// 通过组合索引获取结果
 	result := findByIndexS(nums, indexS)
 	fmt.Println("combination use time:", time.Since(start))
+	//fmt.Println(result)
 
-	fmt.Println(result)
-	if len(result) == combinationNum {
-		fmt.Println("combination result success")
+	if int64(len(result)) == combinationNum {
+		fmt.Printf("combination result success, count=%d\n", combinationNum)
 	} else {
 		fmt.Printf("combination result fail, right result must be %d\n", combinationNum)
 	}
 }
 
+// TestRecursionPermutation
 func TestRecursionPermutation(t *testing.T) {
 
 	TestRandNum(t)
 
 	// n 选 m所有组合数
-	combinationNum := combinationNum(len(nums), m)
+	combinationNum := combinationNum(n, m).Int64()
 
 	start := time.Now()
 	// 所有组合数的索引数组
-	indexS := combinationNumOfIndex(len(nums), m)
+	indexS := combinationNumOfIndex(n, m)
 	// 通过组合索引获取结果
 	result := findByIndexS(nums, indexS)
 	fmt.Println("combination use time:", time.Since(start))
 
-	fmt.Println(result)
-	if len(result) == combinationNum {
-		fmt.Println("combination result success")
-	} else {
-		fmt.Printf("combination result fail, right result must be %d\n", combinationNum)
+	if int64(len(result)) != combinationNum {
+		fmt.Errorf("combination result fail, right result must be %d\n", combinationNum)
 	}
 
 	// 计算所有排列数
-	permutationNum := permutationNum(len(nums), m)
+	permutationNum := permutationNum(n, m).Int64()
 
 	recursionPermutationResult := make([][]int, 0, permutationNum)
 	for _, nums := range result {
@@ -91,37 +90,37 @@ func TestRecursionPermutation(t *testing.T) {
 	}
 	fmt.Println("recursion permutation use time:", time.Since(start))
 
-	fmt.Println(recursionPermutationResult)
-	if len(recursionPermutationResult) == permutationNum {
-		fmt.Println("recursion permutation result success")
+	//fmt.Println(recursionPermutationResult)
+
+	if int64(len(recursionPermutationResult)) == permutationNum {
+		fmt.Printf("recursion permutation result success, count=%d\n", permutationNum)
 	} else {
-		fmt.Printf("recursion permutation result fail, right result must be %d\n", permutationNum)
+		fmt.Errorf("recursion permutation result fail, right result must be %d\n", permutationNum)
 	}
 }
 
+// TestDictionaryPermutation
 func TestDictionaryPermutation(t *testing.T) {
 
 	TestRandNum(t)
 
 	// n 选 m所有组合数
-	combinationNum := combinationNum(len(nums), m)
+	combinationNum := combinationNum(n, m).Int64()
 
 	start := time.Now()
 	// 所有组合数的索引数组
-	indexS := combinationNumOfIndex(len(nums), m)
+	indexS := combinationNumOfIndex(n, m)
 	// 通过组合索引获取结果
 	result := findByIndexS(nums, indexS)
 	fmt.Println("combination use time:", time.Since(start))
 
-	fmt.Println(result)
-	if len(result) == combinationNum {
-		fmt.Println("combination result success")
-	} else {
-		fmt.Printf("combination result fail, right result must be %d\n", combinationNum)
+	//fmt.Println(result)
+	if int64(len(result)) != combinationNum {
+		fmt.Errorf("combination result fail, right result must be %d\n", combinationNum)
 	}
 
 	// 计算所有排列数
-	permutationNum := permutationNum(len(nums), m)
+	permutationNum := permutationNum(n, m).Int64()
 
 	// 通过对所有组合进行全排列得到所有排列组合
 	permutationResult := make([][]int, 0, permutationNum)
@@ -131,9 +130,9 @@ func TestDictionaryPermutation(t *testing.T) {
 	}
 	fmt.Println("permutation use time:", time.Since(start))
 
-	fmt.Println(permutationResult)
-	if len(permutationResult) == permutationNum {
-		fmt.Println("permutation result success")
+	//fmt.Println(permutationResult)
+	if int64(len(permutationResult)) == permutationNum {
+		fmt.Printf("permutation result success, count=%d\n", permutationNum)
 	} else {
 		fmt.Printf("permutation result fail, right result must be %d\n", permutationNum)
 	}

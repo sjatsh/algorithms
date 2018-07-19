@@ -2,6 +2,7 @@ package permulation
 
 import (
 	"fmt"
+	"math/big"
 	"sort"
 )
 
@@ -14,7 +15,7 @@ func combinationNumOfIndex(n, m int) [][]int {
 	}
 
 	// all permutation result
-	result := make([][]int, 0, combinationNum(n, m))
+	result := make([][]int, 0, combinationNum(n, m).Int64())
 	// save all of index result
 	indexS := make([]int, n)
 	// first index array
@@ -174,22 +175,23 @@ func recursionPermutation(nums []int, index int) [][]int {
 }
 
 // permutationNum 排列数
-func permutationNum(n, m int) int {
+func permutationNum(n, m int) *big.Int {
 
-	return factorial(n) / factorial(n-m)
+	return big.NewInt(1).Div(factorial(n), factorial(n-m))
 }
 
 // combinationNum 组合数
-func combinationNum(n, m int) int {
-	return factorial(n) / (factorial(n-m) * factorial(m))
+func combinationNum(n, m int) *big.Int {
+
+	return big.NewInt(1).Div(factorial(n), big.NewInt(1).Mul(factorial(n-m), factorial(m)))
 }
 
 // factorial 阶乘
-func factorial(n int) int {
+func factorial(n int) *big.Int {
 
-	result := 1
+	result := big.NewInt(1)
 	for i := 2; i <= n; i++ {
-		result *= i
+		result = result.Mul(result, big.NewInt(int64(i)))
 	}
 	return result
 }
