@@ -1,4 +1,4 @@
-package main
+package permulation
 
 import (
 	"fmt"
@@ -7,7 +7,7 @@ import (
 	"time"
 )
 
-var n = 10
+var n = 5
 var m = 3
 
 var nums = make([]int, n)
