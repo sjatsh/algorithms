@@ -7,4 +7,4 @@ personal blog [https://sjis.me](https://sjis.me).
 List
 ====
 
-- [permutation and combination algorithm](https://github.com/sjatsh/algorithms/permutation) 
+- [permutation and combination algorithm](https://github.com/sjatsh/algorithms/permutation/main.go) 
