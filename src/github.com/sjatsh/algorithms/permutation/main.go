@@ -10,18 +10,22 @@ func main() {
 	m := 3
 	var numS = []int{1, 2, 3, 4, 5}
 
+	// n 选 m所有组合数
 	combinationNum := combinationNum(len(numS), m)
+	// 所有组合数的索引数组
 	indexS := combinationNumOfIndex(len(numS), m)
+	// 通过组合索引获取结果
 	result := findByIndexS(numS, indexS)
 	fmt.Println(result)
-
 	if len(result) == combinationNum {
 		fmt.Println("combination result success")
 	} else {
 		fmt.Printf("combination result fail, right result must be %d\n", combinationNum)
 	}
 
+	// 计算所有排列数
 	permutationNum := permutationNum(len(numS), m)
+	// 通过对所有组合进行全排列得到所有排列组合
 	permutationResult := permutation(result)
 	fmt.Println(permutationResult)
 	if len(permutationResult) == permutationNum {
