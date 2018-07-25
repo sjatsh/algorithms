@@ -35,7 +35,7 @@ func combinationNumOfIndex(n, m int) [][]int {
 
 		for i := 0; i < n-1; i++ {
 
-			// if index i==1 and index i+1==0
+			// if index i==1 and index i+1==0, 找出第一组1,0下标, 交换后将下标左边1全部左移
 			if 1 == indexS[i] && 0 == indexS[i+1] {
 
 				find = true
@@ -112,6 +112,7 @@ func permutation(nums []int) [][]int {
 
 	result := make([][]int, 0)
 
+	//从小到大排序
 	sort.Slice(nums, func(j, k int) bool {
 		return nums[j] < nums[k]
 	})
@@ -121,6 +122,8 @@ func permutation(nums []int) [][]int {
 
 		find := false
 		pos1, pos2 := 0, 0
+
+		//从右向左找到第一个降序数的下标位
 		for j := len(nums) - 2; j >= 0; j-- {
 
 			if nums[j] < nums[j+1] {
@@ -130,10 +133,12 @@ func permutation(nums []int) [][]int {
 			}
 		}
 
+		//已经找出所有排列
 		if !find {
 			break
 		}
 
+		//从右向第一下标位左找到最小的比第一个下标位的数大的数
 		for j := len(nums) - 1; j > pos1; j-- {
 
 			if nums[j] >= nums[pos1] {
@@ -142,6 +147,7 @@ func permutation(nums []int) [][]int {
 			}
 		}
 
+		// 交换
 		nums[pos1], nums[pos2] = nums[pos2], nums[pos1]
 
 		for j, k := pos1+1, len(nums)-1; j < k; j, k = j+1, k-1 {
@@ -156,7 +162,7 @@ func permutation(nums []int) [][]int {
 	return result
 }
 
-// recursionPermutation 递归排序
+// recursionPermutation 递归加回溯全排列
 func recursionPermutation(nums []int, index int) [][]int {
 
 	result := make([][]int, 0)

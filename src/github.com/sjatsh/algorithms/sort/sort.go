@@ -1,5 +1,0 @@
-package sort
-
-func main() {
-
-}
