@@ -15,6 +15,15 @@ func main() {
 	fmt.Println(array)
 }
 
+func sort(array []int, left, right int) {
+	if left > right {
+		return
+	}
+	var storeIndex = partition(array, left, right)
+	sort(array, left, storeIndex-1)
+	sort(array, storeIndex+1, right)
+}
+
 func partition(array []int, left, right int) int {
 
 	// 数组分区，左小右大
@@ -24,7 +33,9 @@ func partition(array []int, left, right int) int {
 
 	for i := left; i < right; i++ {
 		if array[i] < pivot {
-			array[storeIndex], array[i] = array[i], array[storeIndex]
+			if i != storeIndex {
+				array[storeIndex], array[i] = array[i], array[storeIndex]
+			}
 			// 交换位置后，storeIndex 自增 1，代表下一个可能要交换的位置
 			storeIndex++
 		}
@@ -33,13 +44,4 @@ func partition(array []int, left, right int) int {
 	// 将基准元素放置到最后的正确位置上
 	array[right], array[storeIndex] = array[storeIndex], array[right]
 	return storeIndex
-}
-
-func sort(array []int, left, right int) {
-	if left > right {
-		return
-	}
-	var storeIndex = partition(array, left, right)
-	sort(array, left, storeIndex-1)
-	sort(array, storeIndex+1, right)
 }
