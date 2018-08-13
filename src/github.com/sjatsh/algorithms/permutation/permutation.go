@@ -35,7 +35,8 @@ func combinationNumOfIndex(n, m int) [][]int {
 
 		for i := 0; i < n-1; i++ {
 
-			// if index i==1 and index i+1==0, 找出第一组1,0下标, 交换后将下标左边1全部左移
+			// if index i==1 and index i+1==0,
+			// 找出第一组1,0下标, 交换后将下标左边1全部左移
 			if 1 == indexS[i] && 0 == indexS[i+1] {
 
 				find = true
