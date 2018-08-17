@@ -25,4 +25,29 @@ func main() {
 	}
 
 	fmt.Println(array)
+	optimizationSelect()
+}
+
+func optimizationSelect() {
+
+	array := []int{6, 7, 9, 3, 6, 8, 1, 9, 3}
+	len := len(array)
+	for i := 0; i < len-1; i++ {
+		minIndex := i
+		maxIndex := len - i - 1
+		if minIndex == maxIndex+1 {
+			break
+		}
+		for j := i + 1; j < len; j++ {
+			if array[j] < array[minIndex] {
+				minIndex = j
+			} else if array[j] > array[maxIndex] && j < len-i-1 {
+				maxIndex = j
+			}
+		}
+		array[i], array[minIndex] = array[minIndex], array[i]
+		array[len-i-1], array[maxIndex] = array[maxIndex], array[len-i-1]
+	}
+
+	fmt.Println(array)
 }
