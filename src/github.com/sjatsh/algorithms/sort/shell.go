@@ -12,16 +12,18 @@ func main() {
 	//https://upload.wikimedia.org/wikipedia/commons/d/d8/Sorting_shellsort_anim.gif
 	array := []int{6, 7, 9, 3, 6, 8, 1, 9, 3}
 	n := len(array)
-	var gap, i, j int
 
-	for gap = n / 2; gap > 0; gap /= 2 {
-		//插入排序简洁写法
-		for i = gap; i < n; i++ {
-			num := array[i]
-			for j = i - gap; j >= 0 && array[j] > num; j -= gap {
-				array[j+gap] = array[j]
+	for gap := n / 2; gap > 0; gap /= 2 {
+
+		for i := gap; i < n; i++ {
+
+			preIndex := i - gap
+			current := array[i]
+			for ; preIndex >= 0 && array[preIndex] > current; {
+				array[preIndex+gap] = array[preIndex]
+				preIndex -= gap
 			}
-			array[j+gap] = num
+			array[preIndex+gap] = current
 		}
 	}
 
