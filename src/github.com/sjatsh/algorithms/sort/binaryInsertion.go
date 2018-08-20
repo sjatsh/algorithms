@@ -1,6 +1,8 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 // 二分插入排序
 // 算法思想简单描述：
@@ -13,13 +15,16 @@ func main() {
 	array := []int{6, 7, 9, 3, 6, 8, 1, 9, 3}
 
 	var left, mid, right, temp int
+	length := len(array)
 
-	for i := 1; i < len(array); i++ {
+	for i := 1; i < length; i++ {
 
 		left = 0
 		right = i - 1
 		temp = array[i]
 
+		//循环拿当前元素与中间值比较，不断调整left|right直到left>right
+		//此时left就是需要插入的位置
 		for left <= right {
 			mid = (left + right) / 2
 			if temp < array[mid] {
