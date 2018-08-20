@@ -12,29 +12,29 @@ func main() {
 
 	array := []int{6, 7, 9, 3, 6, 8, 1, 9, 3}
 
-	var start, end, temp, mid int
+	var left, mid, right, temp int
 
 	for i := 1; i < len(array); i++ {
 
-		start = 0
-		end = i - 1
+		left = 0
+		right = i - 1
 		temp = array[i]
 
-		for start <= end {
-			mid = (start + end) / 2
+		for left <= right {
+			mid = (left + right) / 2
 			if temp < array[mid] {
-				end = mid - 1
+				right = mid - 1
 			} else {
-				start = mid + 1
+				left = mid + 1
 			}
 		}
-		//循环完后，start=end+1,此时start为当前插入数字所待坑位
-		//把坑位给当前插入的数据挪出来
-		for j := i - 1; j >= start; j-- {
+		//循环完后，left=right+1,此时left为当前插入数字所待坑位
+		//把left以及右侧数据右移，空出坑位
+		for j := i - 1; j >= left; j-- {
 			array[j+1] = array[j]
 		}
 		//将当前插入数字挪入它该待的坑位
-		array[start] = temp
+		array[left] = temp
 	}
 
 	fmt.Println(array)
