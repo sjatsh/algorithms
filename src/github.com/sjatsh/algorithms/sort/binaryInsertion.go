@@ -35,8 +35,8 @@ func main() {
 		}
 		//循环完后，left=right+1,此时left为当前插入数字所待坑位
 		//把left以及右侧数据右移，空出坑位
-		for j := i - 1; j >= left; j-- {
-			array[j+1] = array[j]
+		for j := i; j > left; j-- {
+			array[j] = array[j-1]
 		}
 		//将当前插入数字挪入它该待的坑位
 		array[left] = temp
