@@ -11,9 +11,9 @@ import "fmt"
 func main() {
 	// https://images2017.cnblogs.com/blog/849589/201710/849589-20171015223238449-2146169197.gif
 	array := []int{6, 7, 9, 3, 6, 8, 1, 9, 3}
-	len := len(array)
-	for i := 0; i < len-1; i++ {
-		for j := i + 1; j < len; j++ {
+	l := len(array)
+	for i := 0; i < l-1; i++ {
+		for j := i + 1; j < l; j++ {
 			if array[i] > array[j] {
 				array[i], array[j] = array[j], array[i]
 			}
