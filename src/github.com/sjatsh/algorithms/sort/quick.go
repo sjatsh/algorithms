@@ -8,25 +8,28 @@ import "fmt"
 3. 递归地（recursive）把小于基准值元素的子数列和大于基准值元素的子数列排序。
 */
 func main() {
-
 	// http://jbcdn2.b0.upaiyun.com/2012/01/Visual-and-intuitive-feel-of-7-common-sorting-algorithms.gif
 	array := []int{6, 7, 9, 3, 6, 8, 1, 9, 3}
 	sort(array, 0, len(array)-1)
 	fmt.Println(array)
 }
 
+// 递归排序
 func sort(array []int, left, right int) {
+	// 数组左边下标大于右边下标时退出
 	if left > right {
 		return
 	}
-	var storeIndex = partition(array, left, right)
-	sort(array, left, storeIndex-1)
-	sort(array, storeIndex+1, right)
+	// 分区并排序，最终返回基准下标
+	var pivotIdx = partition(array, left, right)
+	// 分别递归排序基准左边和右边的数组
+	sort(array, left, pivotIdx-1)
+	sort(array, pivotIdx+1, right)
 }
 
+// 分区并排序
 func partition(array []int, left, right int) int {
-
-	// 数组分区，左小右大
+	// 记录下一个待交换位置
 	var storeIndex = left
 	// 直接选最右边的元素为基准元素
 	var pivot = array[right]
