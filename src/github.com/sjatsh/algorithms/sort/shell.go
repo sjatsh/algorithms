@@ -9,7 +9,7 @@ import "fmt"
 */
 func main() {
 
-	//https://upload.wikimedia.org/wikipedia/commons/d/d8/Sorting_shellsort_anim.gif
+	// https://upload.wikimedia.org/wikipedia/commons/d/d8/Sorting_shellsort_anim.gif
 	array := []int{6, 7, 9, 3, 6, 8, 1, 9, 3}
 	n := len(array)
 
@@ -19,7 +19,7 @@ func main() {
 
 			preIndex := i - gap
 			current := array[i]
-			for ; preIndex >= 0 && array[preIndex] > current; {
+			for preIndex >= 0 && array[preIndex] > current {
 				array[preIndex+gap] = array[preIndex]
 				preIndex -= gap
 			}

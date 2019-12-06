@@ -10,7 +10,7 @@ import "fmt"
 */
 func main() {
 
-	//https://images2017.cnblogs.com/blog/849589/201710/849589-20171015224719590-1433219824.gif
+	// https://images2017.cnblogs.com/blog/849589/201710/849589-20171015224719590-1433219824.gif
 	var minIndex int
 	array := []int{6, 7, 9, 3, 6, 8, 1, 9, 3}
 

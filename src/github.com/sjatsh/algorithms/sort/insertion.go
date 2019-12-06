@@ -13,7 +13,7 @@ import "fmt"
 */
 func main() {
 
-	//https://images2017.cnblogs.com/blog/849589/201710/849589-20171015225645277-1151100000.gif
+	// https://images2017.cnblogs.com/blog/849589/201710/849589-20171015225645277-1151100000.gif
 	var preIndex, current int
 	array := []int{6, 7, 9, 3, 6, 8, 1, 9, 3}
 
