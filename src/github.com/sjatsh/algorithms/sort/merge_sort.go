@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	s "sort"
 )
 
 func main() {
@@ -9,6 +10,8 @@ func main() {
 	temp := make([]int, len(array))
 	mergeSort(array, temp, 0, len(array)-1)
 	fmt.Println(array)
+
+	s.Sort()
 }
 
 // 归并排序：基本思想，数组分为左右两边，对左右两边分别排序，再对两个有序数组进行合并，结束标志：分割的数组只剩下一个元素
@@ -55,7 +58,7 @@ func merge(array []int, temp []int, left, mid, right int) {
 		temp[k] = array[f1]
 	}
 	for ; f2 <= right; f2, k = f2+1, k+1 {
-		temp[k] = array[f2]
+		temp[k] = array[f1]
 	}
 
 	// 排好序的数据重新放回原数组
