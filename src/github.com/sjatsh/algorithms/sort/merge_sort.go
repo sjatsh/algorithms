@@ -15,7 +15,7 @@ func main() {
 // 1：二分法找出中间值，划分左右两个数组，对左右两个数组分别进行排序
 // 2：重复1继续对数组进行分割，直到只剩下一个元素
 // 3：对每个划分后的有序数组进行合并
-func mergeSort(array []int, temp []int, left, right int) {
+func mergeSort(array, temp []int, left, right int) {
 	if left >= right {
 		return
 	}
@@ -32,30 +32,30 @@ func mergeSort(array []int, temp []int, left, right int) {
 func merge(array []int, temp []int, left, mid, right int) {
 
 	// 第一个有序序列第一个下标
-	f := left
+	f1 := left
 	// 第二个有序序列第一个下标
-	f1 := mid + 1
+	f2 := mid + 1
 
 	// temp结果数组下标
 	k := 0
 
 	// 遍历两个有序数组并排序后放入temp数组
-	for ; f <= mid && f1 <= right; k++ {
-		if array[f] <= array[f1] {
-			temp[k] = array[f]
-			f++
+	for ; f1 <= mid && f2 <= right; k++ {
+		if array[f1] <= array[f2] {
+			temp[k] = array[f1]
+			f1++
 			continue
 		}
-		temp[k] = array[f1]
-		f1++
+		temp[k] = array[f2]
+		f2++
 	}
 
 	// 拷贝可能剩余的数据
-	for ; f <= mid; f, k = f+1, k+1 {
-		temp[k] = array[f]
-	}
-	for ; f1 <= right; f1, k = f1+1, k+1 {
+	for ; f1 <= mid; f1, k = f1+1, k+1 {
 		temp[k] = array[f1]
+	}
+	for ; f2 <= right; f2, k = f2+1, k+1 {
+		temp[k] = array[f2]
 	}
 
 	// 排好序的数据重新放回原数组
