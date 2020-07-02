@@ -36,10 +36,11 @@ func partition(array []int, left, right int) int {
 
 	for i := left; i < right; i++ {
 		if array[i] < pivot {
-			if i != storeIndex {
-				array[storeIndex], array[i] = array[i], array[storeIndex]
+			if i == left {
+				storeIndex++
+				continue
 			}
-			// 交换位置后，storeIndex 自增 1，代表下一个可能要交换的位置
+			array[storeIndex], array[i] = array[i], array[storeIndex]
 			storeIndex++
 		}
 	}
